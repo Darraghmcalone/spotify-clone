@@ -3,11 +3,14 @@ import Login from "./components/Login/Login";
 import "./App.css";
 import { getTokenFromResponse } from "./services/spotify";
 import SpotifyWebApi from "spotify-web-api-js";
+import Player from "./components/Player/Player";
+import { useStateValue } from "./store/StateProvider";
 
 const spotify = new SpotifyWebApi();
 
 function App() {
   const [token, setToken] = useState(null);
+  const [{ user }, dispatch] = useStateValue();
   useEffect(() => {
     const hash = getTokenFromResponse();
     window.location.hash = "";
@@ -16,17 +19,16 @@ function App() {
       setToken(_token);
       spotify.setAccessToken(_token);
       spotify.getMe().then((user) => {
-        console.log("😎", user);
+        dispatch({
+          type: "SET_USER",
+          user: user,
+        });
       });
     }
-
     console.log("I HAVE A TOKEN 😀 👉", _token);
-  }, []);
-  return (
-    <div className="App">
-      {token ? <h1>User is Logged in 🚀</h1> : <Login />}
-    </div>
-  );
+  }, [dispatch]);
+  console.log("😎", user);
+  return <div className="App">{token ? <Player /> : <Login />}</div>;
 }
 
 export default App;
