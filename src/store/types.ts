@@ -1,3 +1,5 @@
+import { SpotifyToken } from "../services/spotify";
+
 export interface User extends SpotifyApi.CurrentUsersProfileResponse {}
 
 export interface PlaylistsType
@@ -41,5 +43,15 @@ export type State = {
   playlists: PlaylistsType | null;
   playing: boolean;
   item: Track | null;
-  token: string;
+  token: SpotifyToken | null;
 };
+
+export type Action =
+  | {
+      type: "SET_USER";
+      user: any;
+    }
+  | {
+      type: "SET_TOKEN";
+      token: SpotifyToken;
+    };
