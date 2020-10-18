@@ -30,7 +30,11 @@ function App() {
   }, [dispatch]);
   console.log("😎", user);
   console.log("I HAVE A TOKEN 😀 👉", token);
-  return <div className="App">{token ? <Player /> : <Login />}</div>;
+  return (
+    <div className="App">
+      {token ? <Player spotify={spotify} /> : <Login />}
+    </div>
+  );
 }
 
 export default App;

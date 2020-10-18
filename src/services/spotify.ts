@@ -1,3 +1,10 @@
+export type SpotifyToken = {
+  access_token?: string;
+  expires_in?: string;
+  token_type?: string;
+};
+type STKey = keyof SpotifyToken;
+
 export const authEndpoint = "https://accounts.spotify.com/authorize";
 
 const clientId = "4993fe5a31104a3f97ce5f0854b8587e";
@@ -11,13 +18,13 @@ const scopes = [
   "user-modify-playback-state",
 ];
 
-export const getTokenFromResponse = () => {
+export const getTokenFromResponse = (): SpotifyToken => {
   return window.location.hash
     .substring(1)
     .split("&")
-    .reduce((initial: { [index: string]: any } = {}, item: string) => {
+    .reduce((initial: SpotifyToken, item: string) => {
       var parts = item.split("=");
-      initial[parts[0]] = decodeURIComponent(parts[1]);
+      initial[parts[0] as STKey] = decodeURIComponent(parts[1]);
       return initial;
     }, {});
 };
