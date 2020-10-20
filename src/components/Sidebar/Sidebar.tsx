@@ -5,7 +5,6 @@ import HomeIcon from "@material-ui/icons/Home";
 import SearchIcon from "@material-ui/icons/Search";
 import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
 import { useStateValue } from "../../store/StateProvider";
-import { PlaylistsType } from "../../store/types";
 
 function Sidebar() {
   const [{ playlists }] = useStateValue();
