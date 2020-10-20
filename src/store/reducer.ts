@@ -11,7 +11,6 @@ export const initialState: State = {
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "SET_USER":
-      console.log("action:", action);
       return {
         ...state,
         user: action.user,
@@ -20,6 +19,11 @@ const reducer = (state: State, action: Action): State => {
       return {
         ...state,
         token: action.token,
+      };
+    case "SET_PLAYLISTS":
+      return {
+        ...state,
+        playlists: action.playlists,
       };
     default:
       return state;

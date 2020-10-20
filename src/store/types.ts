@@ -54,4 +54,8 @@ export type Action =
   | {
       type: "SET_TOKEN";
       token: SpotifyToken;
+    }
+  | {
+      type: "SET_PLAYLISTS";
+      playlists: PlaylistsType;
     };
