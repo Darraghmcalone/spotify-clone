@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer } from "react";
 
-import { State } from "./types";
+import { State, Action } from "./types";
 
 export const StateContext = createContext<any>(null);
 
@@ -9,7 +9,7 @@ export const StateProvider = ({
   initialState,
   children,
 }: {
-  reducer: (state: State, action: any) => State;
+  reducer: (state: State, action: Action) => State;
   initialState: State;
   children: React.ReactElement;
 }): React.ReactElement => (

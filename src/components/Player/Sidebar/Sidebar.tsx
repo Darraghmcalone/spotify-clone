@@ -7,7 +7,7 @@ import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
 import { useStateValue } from "../../../store/StateProvider";
 
 function Sidebar() {
-  const [{ playlists }] = useStateValue();
+  const [{ user_playlists }] = useStateValue();
   return (
     <div className="sidebar">
       <img
@@ -21,9 +21,11 @@ function Sidebar() {
       <br />
       <strong className="sidebar__title">PLAYLIST</strong>
       <hr />
-      {playlists?.items.map((playlist: { name: string }, index: number) => (
-        <SidebarOption key={index} title={playlist.name} />
-      ))}
+      {user_playlists?.items.map(
+        (playlist: { name: string }, index: number) => (
+          <SidebarOption key={index} title={playlist.name} />
+        )
+      )}
     </div>
   );
 }

@@ -40,7 +40,7 @@ export type Track = {
 
 export type State = {
   user: User | null;
-  playlists: PlaylistsType | null;
+  user_playlists: PlaylistsType | null;
   playing: boolean;
   item: Track | null;
   token: SpotifyToken | null;
@@ -56,6 +56,6 @@ export type Action =
       token: SpotifyToken;
     }
   | {
-      type: "SET_PLAYLISTS";
-      playlists: PlaylistsType;
+      type: "SET_USER_PLAYLISTS";
+      user_playlists: PlaylistsType;
     };

@@ -27,10 +27,10 @@ function App() {
           user: user,
         });
       });
-      spotify.getUserPlaylists().then((playlists) => {
+      spotify.getUserPlaylists().then((user_playlists) => {
         dispatch({
-          type: "SET_PLAYLISTS",
-          playlists,
+          type: "SET_USER_PLAYLISTS",
+          user_playlists,
         });
       });
     }
