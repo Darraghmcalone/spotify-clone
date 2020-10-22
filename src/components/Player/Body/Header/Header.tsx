@@ -2,9 +2,11 @@ import React from "react";
 import "./Header.css";
 import SearchIcon from "@material-ui/icons/Search";
 import { Avatar } from "@material-ui/core";
-import { useStateValue } from "../../store/StateProvider";
+import { useStateValue } from "../../../../store/StateProvider";
 
-function Header() {
+import { SpotifyApiProps } from "../../types";
+
+function Header({ spotify }: SpotifyApiProps) {
   const [{ user }] = useStateValue();
   return (
     <div className="header">
