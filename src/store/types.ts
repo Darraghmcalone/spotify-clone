@@ -41,6 +41,7 @@ export type Track = {
 export type State = {
   user: User | null;
   user_playlists: PlaylistsType | null;
+  recently_played_playlists: PlaylistsType | null;
   playing: boolean;
   item: Track | null;
   token: SpotifyToken | null;
@@ -58,4 +59,8 @@ export type Action =
   | {
       type: "SET_USER_PLAYLISTS";
       user_playlists: PlaylistsType;
-    };
+    }
+    | {
+      type: "SET_RECENTLY_PLAYED_PLAYLISTS";
+      recently_played_playlists: PlaylistsType;
+    }  

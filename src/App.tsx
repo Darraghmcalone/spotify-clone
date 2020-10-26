@@ -9,8 +9,8 @@ import { useStateValue } from "./store/StateProvider";
 const spotify = new SpotifyWebApi();
 
 function App() {
-  const [{ user, token }, dispatch] = useStateValue();
-  console.log(user);
+  const [{ token }, dispatch] = useStateValue();
+
   useEffect(() => {
     const hash = getTokenFromResponse();
     window.location.hash = "";
@@ -31,6 +31,12 @@ function App() {
         dispatch({
           type: "SET_USER_PLAYLISTS",
           user_playlists,
+        });
+      });
+      spotify.getMyRecentlyPlayedTracks().then((recently_played_playlists) => {
+        dispatch({
+          type: "SET_RECENTLY_PLAYED_PLAYLISTS",
+          recently_played_playlists,
         });
       });
     }

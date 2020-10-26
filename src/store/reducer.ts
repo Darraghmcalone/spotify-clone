@@ -3,6 +3,7 @@ import { State, Action } from "./types";
 export const initialState: State = {
   user: null,
   user_playlists: null,
+  recently_played_playlists: null,
   playing: false,
   item: null,
   token: null,
@@ -25,6 +26,11 @@ const reducer = (state: State, action: Action): State => {
         ...state,
         user_playlists: action.user_playlists,
       };
+      case "SET_RECENTLY_PLAYED_PLAYLISTS":
+        return {
+          ...state,
+          recently_played_playlists: action.recently_played_playlists,
+        };
     default:
       return state;
   }
