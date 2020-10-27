@@ -1,14 +1,23 @@
 .body {
-  padding: 30px;
-  height: 100vh;
+  padding: 20px;
   overflow-y: overlay;
   flex: 0.8;
   color: white;
   background-color: #121212;
+  display: grid;
+  grid-gap: 32px;
 }
 .body__row {
-  display: flex;
+  display: grid;
+  grid-gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  overflow-y: hidden;
   min-height: 250px;
+}
+.body__rowTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 h2 {
   font-size: 24px;
@@ -16,14 +25,19 @@ h2 {
   line-height: 28px;
   letter-spacing: -0.04em;
   text-transform: none;
-  margin-bottom: 18px;
+}
+h3 {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 .body__block {
   flex: 1;
   justify-content: space-between;
   text-align: left;
   padding: 16px;
-  margin-right: 15px;
   background: #181818;
   border-radius: 4px;
   transition: background-color 0.3s ease;
