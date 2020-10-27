@@ -39,6 +39,16 @@ function App() {
           recently_played_playlists,
         });
       });
+      spotify
+        .getNewReleases()
+
+        .then((new_releases_playlists) => new_releases_playlists?.albums?.items)
+        .then((new_releases_playlists) => {
+          dispatch({
+            type: "SET_NEW_RELEASES_PLAYLISTS",
+            new_releases_playlists,
+          });
+        });
     }
   }, [dispatch]);
   return (
