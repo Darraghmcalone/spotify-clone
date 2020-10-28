@@ -6,7 +6,6 @@ import Sidebar from "./Sidebar/Sidebar";
 import "./Player.css";
 
 function Player({ spotify }: SpotifyApiProps) {
-  console.log("spotify:", spotify);
   return (
     <div className="player">
       <div className="player__body">

@@ -11,15 +11,23 @@ type Props = {
 
 function Body({ spotify }: SpotifyApiProps) {
   const [
-    { recently_played_playlists, new_releases_playlists },
+    { recently_played_playlists, new_releases_playlists, my_top_artists },
   ] = useStateValue();
 
-  const recentlyPlayedAlbums = recently_played_playlists?.items
-    .map((item: any) => item?.track?.album)
+  const recentlyPlayedAlbums = recently_played_playlists
+    ?.map((item: any) => item?.track?.album)
     .splice(0, 4);
   const newReleases = new_releases_playlists
-    ?.map((item: any) => (
-      <div className="body__block">
+    ?.map((item: any, index: number) => (
+      <div key={index} className="body__block">
+        <img alt="" src={item.images[0].url} />
+        <h4>{item.name}</h4>
+      </div>
+    ))
+    .splice(0, 4);
+  const myTopArtists = my_top_artists
+    ?.map((item: any, index: number) => (
+      <div key={index} className="body__block">
         <img alt="" src={item.images[0].url} />
         <h4>{item.name}</h4>
       </div>
@@ -31,8 +39,8 @@ function Body({ spotify }: SpotifyApiProps) {
       <Header spotify={spotify} />
       <h2>Recently played</h2>
       <div className="body__row">
-        {recentlyPlayedAlbums?.map((item: Props) => (
-          <div className="body__block">
+        {recentlyPlayedAlbums?.map((item: Props, index: number) => (
+          <div key={index} className="body__block">
             <img alt="" src={item.images[0].url} />
             <h4>{item.name}</h4>
           </div>
@@ -43,6 +51,11 @@ function Body({ spotify }: SpotifyApiProps) {
         <h3>SEE ALL</h3>
       </div>
       <div className="body__row">{newReleases}</div>
+      <div className="body__rowTitle">
+        <h2>My Top Artists</h2>
+        <h3>SEE ALL</h3>
+      </div>
+      <div className="body__row">{myTopArtists}</div>
     </div>
   );
 }

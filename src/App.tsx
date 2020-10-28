@@ -33,22 +33,24 @@ function App() {
           user_playlists,
         });
       });
-      spotify.getMyRecentlyPlayedTracks().then((recently_played_playlists) => {
+      spotify.getMyRecentlyPlayedTracks().then(({ items }) => {
         dispatch({
           type: "SET_RECENTLY_PLAYED_PLAYLISTS",
-          recently_played_playlists,
+          recently_played_playlists: items,
         });
       });
-      spotify
-        .getNewReleases()
-
-        .then((new_releases_playlists) => new_releases_playlists?.albums?.items)
-        .then((new_releases_playlists) => {
-          dispatch({
-            type: "SET_NEW_RELEASES_PLAYLISTS",
-            new_releases_playlists,
-          });
+      spotify.getNewReleases().then(({ albums }) => {
+        dispatch({
+          type: "SET_NEW_RELEASES_PLAYLISTS",
+          new_releases_playlists: albums?.items,
         });
+      });
+      spotify.getMyTopArtists().then(({ items }) => {
+        dispatch({
+          type: "SET_MY_TOP_ARTISTS",
+          my_top_artists: items,
+        });
+      });
     }
   }, [dispatch]);
   return (
