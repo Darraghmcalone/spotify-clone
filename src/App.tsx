@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Login from "./components/Login/Login";
 import "./App.css";
 import { getTokenFromResponse } from "./services/spotify";
@@ -9,18 +9,26 @@ import { useStateValue } from "./store/StateProvider";
 const spotify = new SpotifyWebApi();
 
 function App() {
-  const [{ token }, dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue();
+  const hash = getTokenFromResponse();
+  window.location.hash = "";
+  const _token = hash.access_token;
 
+  if (_token) {
+    localStorage.setItem("TOKEN", _token);
+    localStorage.setItem(
+      "expirationDate",
+      JSON.stringify(Date.now() + 3600 * 1000)
+    );
+  }
+  const storageToken = localStorage?.getItem("TOKEN");
+  if (_token) {
+    spotify.setAccessToken(_token);
+  } else if (storageToken) {
+    spotify.setAccessToken(storageToken);
+  }
   useEffect(() => {
-    const hash = getTokenFromResponse();
-    window.location.hash = "";
-    const _token = hash.access_token;
-    if (_token) {
-      dispatch({
-        type: "SET_TOKEN",
-        token: _token,
-      });
-      spotify.setAccessToken(_token);
+    if (_token || storageToken) {
       spotify.getMe().then((user) => {
         dispatch({
           type: "SET_USER",
@@ -55,7 +63,11 @@ function App() {
   }, [dispatch]);
   return (
     <div className="App">
-      {token ? <Player spotify={spotify} /> : <Login />}
+      {localStorage?.getItem("TOKEN") ? (
+        <Player spotify={spotify} />
+      ) : (
+        <Login />
+      )}
     </div>
   );
 }
