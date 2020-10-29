@@ -36,7 +36,7 @@ function Body({ spotify }: SpotifyApiProps) {
 
   return (
     <div className="body">
-      <Header spotify={spotify} />
+      <Header />
       <h2>Recently played</h2>
       <div className="body__row">
         {recentlyPlayedAlbums?.map((item: Props, index: number) => (

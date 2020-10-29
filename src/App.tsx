@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Login from "./components/Login/Login";
 import "./App.css";
 import { getTokenFromResponse } from "./services/spotify";
@@ -60,7 +60,7 @@ function App() {
         });
       });
     }
-  }, [dispatch]);
+  }, [dispatch, _token, storageToken]);
   return (
     <div className="App">
       {localStorage?.getItem("TOKEN") ? (
