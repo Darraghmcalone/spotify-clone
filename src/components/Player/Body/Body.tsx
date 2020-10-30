@@ -16,7 +16,7 @@ function Body({ spotify }: SpotifyApiProps) {
 
   const recentlyPlayedAlbums = recently_played_playlists
     ?.map((item: any) => item?.track?.album)
-    .splice(0, 4);
+    .splice(0, 5);
   const newReleases = new_releases_playlists
     ?.map((item: any, index: number) => (
       <div key={index} className="body__block">
@@ -24,7 +24,7 @@ function Body({ spotify }: SpotifyApiProps) {
         <h4>{item.name}</h4>
       </div>
     ))
-    .splice(0, 4);
+    .splice(0, 5);
   const myTopArtists = my_top_artists
     ?.map((item: any, index: number) => (
       <div key={index} className="body__block">
@@ -32,7 +32,7 @@ function Body({ spotify }: SpotifyApiProps) {
         <h4>{item.name}</h4>
       </div>
     ))
-    .splice(0, 4);
+    .splice(0, 5);
 
   return (
     <div className="body">

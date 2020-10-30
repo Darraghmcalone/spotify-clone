@@ -11,7 +11,7 @@
   display: flex;
   grid-gap: 24px;
   overflow-y: hidden;
-  max-height: 250px;
+  max-height: 300px;
 }
 .body__rowTitle {
   display: flex;
@@ -42,19 +42,22 @@ h3 {
   transition: background-color 0.3s ease;
 }
 @media only screen and (max-width: 1024px) {
-  .body__block:nth-child(3) {
+  .body__block:nth-child(4) {
+    display: none;
+  }
+  .body__block:nth-child(5) {
     display: none;
   }
 }
 @media only screen and (max-width: 768px) {
-  .body__block:nth-child(4) {
+  .body__block:nth-child(3) {
     display: none;
   }
 }
 .body__block > img {
   width: 100%;
-  max-height: 70%;
-  object-fit: contain;
+  max-height: 74%;
+  object-fit: cover;
   margin-bottom: 16px;
   border-radius: 2px;
 }
