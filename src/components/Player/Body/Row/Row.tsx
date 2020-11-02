@@ -26,7 +26,7 @@ function Row({ rowTitle, rowData }: RowData) {
               <h4>{item.name}</h4>
             </div>
           ))
-          .splice(0, 4)}
+          .splice(0, 5)}
       </div>
     </>
   );

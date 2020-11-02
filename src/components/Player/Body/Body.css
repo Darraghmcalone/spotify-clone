@@ -1,9 +1,11 @@
 .body {
+  background-color: #121212;
+}
+.body_rows {
   padding: 20px;
   overflow-y: overlay;
   flex: 0.8;
   color: white;
-  background-color: #121212;
   display: grid;
   grid-gap: 32px;
 }
