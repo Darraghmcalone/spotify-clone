@@ -1,9 +1,13 @@
-.player__body {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: 1fr auto;  
-    grid-template-areas:
-        "nav-bar main-view"
-        "now-playing-bar now-playing-bar"
+.player {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
 }
-
+.player__body {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  overflow: hidden;
+}
