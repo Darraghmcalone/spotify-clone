@@ -10,7 +10,7 @@ import Popper from "@material-ui/core/Popper";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { useStateValue } from "../../../../store/StateProvider";
+import { useStateValue } from "../../../store/StateProvider";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

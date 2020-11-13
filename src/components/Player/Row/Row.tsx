@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Row.css";
 
 type RowDataItem = {
+  id: any;
   name: string;
   images: { url: string | undefined }[];
 };
@@ -9,14 +11,27 @@ type RowDataItem = {
 type RowData = {
   rowTitle: string;
   rowData: RowDataItem[];
+  link: string;
+  itemCount: number;
 };
 
-function Row({ rowTitle, rowData }: RowData) {
+function Row({ rowTitle, rowData, link }: RowData) {
+  const data = { rowTitle: rowTitle, rowData: rowData };
   return (
     <>
       <div className="body__rowTitle">
         <h2>{rowTitle}</h2>
-        <h3>SEE ALL</h3>
+        <Link
+          to={{
+            pathname: `/genre/${link}`,
+            state: {
+              data,
+            },
+          }}
+        >
+          {" "}
+          <h3>SEE ALL</h3>{" "}
+        </Link>
       </div>
       <div className="body__row">
         {rowData
