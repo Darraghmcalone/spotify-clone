@@ -11,7 +11,7 @@ import {
   getMyTopArtists,
   getNewReleases,
   getUserPlaylists,
-} from "./api/playlists";
+} from "./api/requests";
 
 const spotify = new SpotifyWebApi();
 

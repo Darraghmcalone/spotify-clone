@@ -54,11 +54,27 @@ async function getMyRecentlyPlayedAlbums(dispatch: any) {
     recently_played_playlists: uniqueRecentlyPlayedAlbums,
   });
 }
+
 async function getNewReleases(dispatch: any) {
   const { albums } = await spotify.getNewReleases();
   dispatch({
     type: "SET_NEW_RELEASES_PLAYLISTS",
     new_releases_playlists: albums?.items,
+  });
+}
+async function getAlbum(dispatch: any, id: any) {
+  const playlist = await spotify.getAlbum(id);
+  dispatch({
+    type: "SET_PLAYLIST",
+    playlist: playlist,
+  });
+}
+
+async function getAlbumTracks(dispatch: any, playlistId: string) {
+  const playlistTracks = await spotify.getAlbumTracks(playlistId);
+  dispatch({
+    type: "SET_PLAYLIST_TRACKS",
+    playlistTracks: playlistTracks,
   });
 }
 
@@ -68,4 +84,6 @@ export {
   getMyTopArtists,
   getMyRecentlyPlayedAlbums,
   getNewReleases,
+  getAlbum,
+  getAlbumTracks,
 };

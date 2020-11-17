@@ -33,13 +33,23 @@ function Row({ rowTitle, rowData, link }: RowData) {
           <h3>SEE ALL</h3>{" "}
         </Link>
       </div>
+
       <div className="body__row">
         {rowData
           ?.map((item, index: number) => (
-            <div key={index} className="body__block">
+            <Link
+              to={{
+                pathname: `/playlist/${item.id}`,
+                state: {
+                  item,
+                },
+              }}
+              key={index}
+              className="body__block"
+            >
               <img alt="" src={item.images[0].url} />
               <h4>{item.name}</h4>
-            </div>
+            </Link>
           ))
           .splice(0, 5)}
       </div>
