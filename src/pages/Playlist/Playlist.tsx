@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect } from "react";
 import "./Playlist.css";
 import { RouteComponentProps } from "react-router";
+import { usePalette } from "react-palette";
 import { getAlbum, getAlbumTracks } from "../../api/requests";
 import Header from "../../components/Player/Header/Header";
 import { useStateValue } from "../../store/StateProvider";
@@ -18,6 +19,7 @@ type Duration = {
 
 const Playlist: FunctionComponent<Playlist> = ({ location }: any) => {
   const [{ playlist, playlistTracks }, dispatch] = useStateValue();
+  const { data } = usePalette(playlist?.images[0]?.url);
 
   const totalDuration = playlist?.tracks?.items
     ?.map((val: Duration) => val?.duration_ms)
@@ -46,7 +48,7 @@ const Playlist: FunctionComponent<Playlist> = ({ location }: any) => {
   const release_date = new Date(playlist?.release_date).getFullYear();
 
   return (
-    <div className="playlist">
+    <div style={{ backgroundColor: data.lightVibrant }} className="playlist">
       <Header />
 
       <div className="playlist__info">
