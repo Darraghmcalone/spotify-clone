@@ -62,19 +62,46 @@ async function getNewReleases(dispatch: any) {
     new_releases_playlists: albums?.items,
   });
 }
-async function getAlbum(dispatch: any, id: any) {
-  const playlist = await spotify.getAlbum(id);
+async function getAlbum(dispatch: any, id: any, type: string | undefined) {
+  const playlist =
+    type === "artist"
+      ? await spotify.getArtist(id)
+      : await spotify.getAlbum(id);
+
   dispatch({
     type: "SET_PLAYLIST",
     playlist: playlist,
   });
 }
 
-async function getAlbumTracks(dispatch: any, playlistId: string) {
-  const playlistTracks = await spotify.getAlbumTracks(playlistId);
+async function getAlbumTracks(
+  dispatch: any,
+  id: string,
+  type: string | undefined
+) {
+  const playlistTracks =
+    type === "artist"
+      ? await spotify.getArtistTopTracks(id, "US")
+      : await spotify.getAlbumTracks(id);
   dispatch({
     type: "SET_PLAYLIST_TRACKS",
     playlistTracks: playlistTracks,
+  });
+}
+
+async function getArtist(dispatch: any, id: any) {
+  const artist = await spotify.getArtist(id);
+  dispatch({
+    type: "SET_ARTIST",
+    artist: artist,
+  });
+}
+
+async function getArtistTracks(dispatch: any, id: string) {
+  const artistTracks = await spotify.getArtistTopTracks(id, "US");
+  dispatch({
+    type: "SET_ARTIST_TRACKS",
+    artistTracks: artistTracks,
   });
 }
 
@@ -86,4 +113,6 @@ export {
   getNewReleases,
   getAlbum,
   getAlbumTracks,
+  getArtist,
+  getArtistTracks,
 };
