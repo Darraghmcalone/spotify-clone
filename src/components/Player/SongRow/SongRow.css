@@ -16,10 +16,14 @@
 }
 
 .songRow__info {
-  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 80%;
+  text-align: left;
 }
 
-.songRow__info > h1 {
+.songRow__info > div > h1 {
   font-size: 16px;
 }
 
@@ -38,4 +42,5 @@ span {
   color: #b3b3b3;
   width: 16px;
   height: 16px;
+  margin-top: 5%;
 }

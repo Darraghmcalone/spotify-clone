@@ -46,6 +46,8 @@ export type State = {
   my_top_artists: PlaylistsType | null;
   playlist: PlaylistsType | null;
   playlistTracks: PlaylistsType | null;
+  artist: PlaylistsType | null;
+  artistTracks: PlaylistsType | null;
   playing: boolean;
   item: Track | null;
   token: SpotifyToken | null;
@@ -83,4 +85,12 @@ export type Action =
   | {
       type: "SET_PLAYLIST_TRACKS";
       playlistTracks: PlaylistsType;
+    }
+  | {
+      type: "SET_ARTIST";
+      artist: PlaylistsType;
+    }
+  | {
+      type: "SET_ARTIST_TRACKS";
+      artistTracks: PlaylistsType;
     };

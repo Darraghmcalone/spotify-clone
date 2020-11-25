@@ -6,6 +6,7 @@ type RowDataItem = {
   id: any;
   name: string;
   images: { url: string | undefined }[];
+  type?: string | undefined;
 };
 
 type RowData = {
@@ -17,6 +18,8 @@ type RowData = {
 
 function Row({ rowTitle, rowData, link }: RowData) {
   const data = { rowTitle: rowTitle, rowData: rowData };
+  console.log("rowData:", rowData);
+
   return (
     <>
       <div className="body__rowTitle">
@@ -36,21 +39,24 @@ function Row({ rowTitle, rowData, link }: RowData) {
 
       <div className="body__row">
         {rowData
-          ?.map((item, index: number) => (
-            <Link
-              to={{
-                pathname: `/playlist/${item.id}`,
-                state: {
-                  item,
-                },
-              }}
-              key={index}
-              className="body__block"
-            >
-              <img alt="" src={item.images[0].url} />
-              <h4>{item.name}</h4>
-            </Link>
-          ))
+          ?.map((item, index: number) => {
+            const { type = "playlist" } = item;
+            return (
+              <Link
+                to={{
+                  pathname: `/${type}/${item.id}`,
+                  state: {
+                    item,
+                  },
+                }}
+                key={index}
+                className="body__block"
+              >
+                <img alt="" src={item.images[0].url} />
+                <h4>{item.name}</h4>
+              </Link>
+            );
+          })
           .splice(0, 5)}
       </div>
     </>

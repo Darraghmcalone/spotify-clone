@@ -6,6 +6,7 @@ type Artist = {
 };
 
 type Track = {
+  index: number;
   track: {
     track_number: number;
     duration_ms: number;
@@ -17,13 +18,15 @@ type Track = {
   };
 };
 
-function SongRow({ track }: Track) {
+function SongRow({ index, track }: Track) {
   const minutes = `${0}${new Date(track?.duration_ms).getMinutes()}`.slice(-1);
   const seconds = `${0}${new Date(track?.duration_ms).getSeconds()}`.slice(-2);
   const duration = `${minutes}:${seconds}`;
   return (
     <div className="songRow">
-      <span>{track?.track_number}</span>
+      <div>
+        <span>{index + 1}</span>
+      </div>
       <div className="songRow__info">
         <h1>{track?.name}</h1>
         <p>
@@ -31,7 +34,9 @@ function SongRow({ track }: Track) {
           {track?.album?.name}
         </p>
       </div>
-      <span>{duration}</span>
+      <div>
+        <span>{duration}</span>
+      </div>
     </div>
   );
 }

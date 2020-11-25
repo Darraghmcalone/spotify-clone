@@ -6,8 +6,10 @@ export const initialState: State = {
   recently_played_playlists: null,
   new_releases_playlists: null,
   my_top_artists: null,
-  playlistTracks: null,
   playlist: null,
+  playlistTracks: null,
+  artist: null,
+  artistTracks: null,
   playing: false,
   item: null,
   token: null,
@@ -54,6 +56,16 @@ const reducer = (state: State, action: Action): State => {
       return {
         ...state,
         playlistTracks: action.playlistTracks,
+      };
+    case "SET_ARTIST":
+      return {
+        ...state,
+        artist: action.artist,
+      };
+    case "SET_ARTIST_TRACKS":
+      return {
+        ...state,
+        artistTracks: action.artistTracks,
       };
 
     default:
