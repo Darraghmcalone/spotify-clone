@@ -34,7 +34,7 @@ function SongRow({ index, track }: Track) {
           {track?.album?.name}
         </p>
       </div>
-      <div>
+      <div className="songRow__duration">
         <span>{duration}</span>
       </div>
     </div>
